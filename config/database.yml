@@ -13,14 +13,11 @@
 # gem "pg"
 #
 default: &default
-  adapter: cockroachdb
-  port: 26257
-  user: tomas
-  password: UDciwDoHciL2U_uXpb-_LQ
-  database: recipe_app
-  sslmode: 'verify-full'
-  sslrootcert: './root.crt'
-  options: "--cluster=projects-database"
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
@@ -82,4 +79,7 @@ test:
 #
 production:
   <<: *default
- 
+  url: <%= ENV['DATABASE_URL'] %>
+  database: super_transactions_production
+  username: super_transactions
+  password: <%= ENV["SUPER_TRANSACTIONS_DATABASE_PASSWORD"] %>
