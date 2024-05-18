@@ -80,6 +80,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: super_transactions_production
-  username: super_transactions
-  password: <%= ENV["SUPER_TRANSACTIONS_DATABASE_PASSWORD"] %>
+  database: recipe_database
+  username: recipe_database
+  password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
